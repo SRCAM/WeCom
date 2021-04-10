@@ -17,7 +17,7 @@ class TagClient extends HttpCent
      * 创建
      * @param string $tagname 标签名称
      * @param int|string $tagid
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function create($tagname, $tagid = '')
@@ -29,7 +29,7 @@ class TagClient extends HttpCent
      * 更新标签名字
      * @param $tagid
      * @param $tagname
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function update($tagid, $tagname)
@@ -40,7 +40,7 @@ class TagClient extends HttpCent
     /**
      * 删除标签
      * @param int $tagid
-     * @return array|bool|float|int|object|string
+     * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function delete($tagid)
@@ -51,7 +51,7 @@ class TagClient extends HttpCent
     /**
      * 获取标签成员
      * @param $tagid
-     * @return array|bool|float|int|object|string
+     * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function get($tagid)
@@ -65,7 +65,7 @@ class TagClient extends HttpCent
      * @param int $tagid 标签ID
      * @param array $userlist 企业成员ID列表，注意：userlist、partylist不能同时为空，单次请求个数不超过1000
      * @param array $partylist 企业部门ID列表，注意：userlist、partylist不能同时为空，单次请求个数不超过100
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function addtagusers($tagid, $userlist = [], $partylist = [])
@@ -75,7 +75,7 @@ class TagClient extends HttpCent
 
     /**
      * 获取标签列表
-     * @return array|bool|float|int|object|string
+     * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function list()

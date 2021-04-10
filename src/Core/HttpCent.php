@@ -50,8 +50,7 @@ class HttpCent
      * GET 请求
      * @param string $url
      * @param array $query
-     *
-     * @return array|bool|float|int|object|string
+     * @return array|mixed|object|ResponseInterface|Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     protected function httpGet(string $url, array $query = [])
@@ -59,23 +58,12 @@ class HttpCent
         return $this->request($url, 'GET', ['query' => $query]);
     }
 
-
     /**
-     * 请求处理
-     * @param \Psr\Http\Message\ResponseInterface $response
-     * @return ResponseInterface
-     */
-    protected function afterRequestHandle($response): ResponseInterface
-    {
-        return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
-    }
-
-    /**
-     *
      * post request.
      * @param string $url
      * @param array $data
-     * @return \Psr\Http\Message\ResponseInterface
+     * @param array $query
+     * @return array|mixed|object|ResponseInterface|Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     protected function httpPost(string $url, array $data = [], array $query = [])
@@ -85,12 +73,10 @@ class HttpCent
 
     /**
      * JSON request.
-     *
      * @param string $url
      * @param array $data
      * @param array $query
-     *
-     * @return array
+     * @return array|mixed|object|ResponseInterface|Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     protected function httpPostJson(string $url, array $data = [], array $query = [])
@@ -104,6 +90,7 @@ class HttpCent
      * @param string $method
      * @param array $options
      * @param bool $returnRaw
+     * @return array|mixed|object|ResponseInterface|Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function request(string $url, string $method = 'GET', array $options = [], $returnRaw = false)
@@ -124,6 +111,9 @@ class HttpCent
         $this->pushMiddleware($this->logMiddleware(), 'log');
     }
 
+    /**
+     * @return callable|\Closure
+     */
     protected function logMiddleware()
     {
         $formatter = new \GuzzleHttp\MessageFormatter($this->app['config']['log']['template'] ?? \GuzzleHttp\MessageFormatter::CLF);

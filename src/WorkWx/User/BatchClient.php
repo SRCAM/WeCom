@@ -13,7 +13,7 @@ class BatchClient extends HttpCent
      * @param array $user
      * @param array $party
      * @param array $tag
-     * @return array|\Psr\Http\Message\ResponseInterface
+     * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function invite(array $user = [], array $party = [], array $tag = [])
@@ -26,7 +26,7 @@ class BatchClient extends HttpCent
      * 增量更新成员
      * @param $media_id
      * @param array $param
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function syncUser($media_id, $param = [])
@@ -38,7 +38,7 @@ class BatchClient extends HttpCent
      * 全量覆盖成员
      * @param $media_id
      * @param array $param
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function replaceUser($media_id, $param = [])
@@ -50,7 +50,7 @@ class BatchClient extends HttpCent
      * 全量覆盖部门
      * @param $media_id
      * @param array $param
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function replaceparty($media_id, $param = [])
@@ -63,7 +63,7 @@ class BatchClient extends HttpCent
      * 获取异步任务结果
      * @param $media_id
      * @param array $param
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getresult($media_id, $param = [])

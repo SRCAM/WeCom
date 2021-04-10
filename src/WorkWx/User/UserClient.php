@@ -21,7 +21,7 @@ class UserClient extends HttpCent
      * @param array $department
      * @param string $email
      * @param array $user_info 额外参数
-     * @return ResponseInterface
+     * @return array|mixed|object|ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function create($userid, $name, $mobile, $department, $email = null, $user_info = [])
@@ -41,7 +41,7 @@ class UserClient extends HttpCent
     /**
      * 读取成员
      * @param $userid
-     * @return array|ResponseInterface
+     * @return array|mixed|object|ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function get($userid)
@@ -53,7 +53,7 @@ class UserClient extends HttpCent
      * 更新成员
      * @param string $userid 成员UserID
      * @param array $user_info
-     * @return array|ResponseInterface
+     * @return array|mixed|object|ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function update($userid, $user_info = [])
@@ -69,7 +69,7 @@ class UserClient extends HttpCent
     /**
      * 删除成员
      * @param string $userid
-     * @return array|ResponseInterface
+     * @return array|mixed|object|ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function delete($userid)
@@ -81,7 +81,7 @@ class UserClient extends HttpCent
     /**
      * 批量删除成员
      * @param array $useridlist
-     * @return array
+     * @return array|mixed|object|ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function batchdelete(array $user_ids)
@@ -93,7 +93,7 @@ class UserClient extends HttpCent
      * 获取部门成员
      * @param int $department_id 获取的部门id
      * @param int $fetch_child 是否递归获取子部门下面的成员：1-递归获取，0-只获取本部门
-     * @return array|bool|float|int|object|string
+     * @return array|mixed|object|ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function simpleList($department_id, $fetch_child = 0)
@@ -105,7 +105,7 @@ class UserClient extends HttpCent
      * 获取部门成员详情
      * @param $department_id
      * @param int $fetch_child
-     * @return array|bool|float|int|object|string
+     * @return array|mixed|object|ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function userlist($department_id, $fetch_child = 0)
@@ -116,7 +116,7 @@ class UserClient extends HttpCent
     /**
      * userid转openid
      * @param $user_id
-     * @return array|ResponseInterface
+     * @return array|mixed|object|ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function convertToOpenid($user_id)
@@ -128,7 +128,7 @@ class UserClient extends HttpCent
      *
      * userid转openid
      * @param $user_id
-     * @return array|ResponseInterface
+     * @return array|mixed|object|ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function convertToUserid($open_id)
@@ -140,7 +140,7 @@ class UserClient extends HttpCent
     /**
      * 获取企业活跃成员数
      * @param $date
-     * @return array|ResponseInterface
+     * @return array|mixed|object|ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function get_active_stat($date)

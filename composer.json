@@ -10,6 +10,10 @@
         "psr/log": "^1.1",
         "monolog/monolog": "^2.2",
         "symfony/event-dispatcher": "^5.2"
+    }
+    ,
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
     },
     "description": "企业微信",
     "license": "MIT",
@@ -22,6 +26,11 @@
     "autoload": {
         "psr-4": {
             "saber\\WorkWechat\\":"src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "saber\\Test\\":"test/"
         }
     }
 }
