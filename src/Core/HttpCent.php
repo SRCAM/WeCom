@@ -5,9 +5,6 @@ namespace saber\WorkWechat\Core;
 
 
 use GuzzleHttp\Middleware;
-use MessageFormatter;
-use Monolog\Logger;
-use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LogLevel;
 use saber\WorkWechat\Core\Traits\HasHttpRequests;

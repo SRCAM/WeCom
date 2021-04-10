@@ -14,7 +14,7 @@ use \saber\WorkWechat\WorkWx\LinkedCorp\Client as LinkedCorpClient;
  * @property CorpClient        $user_corp
  * @property TagClient         $user_tag    用户标签
  * @property DepartmentClient  $department  部门
- * @property LinkedCorpClient  $corp_client 企业互联
+ * @property LinkedCorpClient  $linked_corp 企业互联
  * Class Application
  * @package saber\WorkWechat\WorkWx
  */

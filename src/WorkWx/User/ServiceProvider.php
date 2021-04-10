@@ -8,6 +8,10 @@ use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
 
+/**
+ * Class ServiceProvider
+ * @package saber\WorkWechat\WorkWx\User
+ */
 class ServiceProvider implements ServiceProviderInterface
 {
 
