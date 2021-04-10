@@ -14,14 +14,18 @@ class ServiceProvider implements ServiceProviderInterface
     public function register(Container $pimple)
     {
         $pimple['user'] = function ($app) {
-            return new User($app);
+            return new UserClient($app);
         };
 
         $pimple['user_corp'] = function ($app) {
-            return new Corp($app);
+            return new CorpClient($app);
         };
-        $pimple['user_batch'] = function ($app) {
-            return new Batch($app);
+        $pimple['batch'] = function ($app) {
+            return new BatchClient($app);
+        };
+
+        $pimple['user_tag'] = function ($app) {
+            return new TagClient($app);
         };
     }
 }

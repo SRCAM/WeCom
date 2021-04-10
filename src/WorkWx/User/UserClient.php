@@ -8,9 +8,9 @@ use saber\WorkWechat\Core\HttpCent;
 /**
  * 用户管理
  * Class Client
- * @package saber\WorkWechat\WorkWx\User
+ * @package saber\WorkWechat\WorkWx\UserClient
  */
-class User extends HttpCent
+class UserClient extends HttpCent
 {
 
     /**

@@ -6,7 +6,7 @@ namespace saber\WorkWechat\WorkWx\User;
 
 use saber\WorkWechat\Core\HttpCent;
 
-class Corp extends HttpCent
+class CorpClient extends HttpCent
 {
     /**
      *  获取加入企业二维码
