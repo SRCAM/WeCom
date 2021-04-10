@@ -57,7 +57,7 @@ class HttpCent
      * @return array|bool|float|int|object|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function httpGet(string $url, array $query = []): array
+    protected function httpGet(string $url, array $query = [])
     {
         return $this->request($url, 'GET', ['query' => $query]);
     }
@@ -78,11 +78,10 @@ class HttpCent
      * post request.
      * @param string $url
      * @param array $data
-     *
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function httpPost(string $url, array $data = [], array $query = []): array
+    protected function httpPost(string $url, array $data = [], array $query = [])
     {
         return $this->request($url, 'POST', ['form_params' => $data, 'query' => $query]);
     }
@@ -97,7 +96,7 @@ class HttpCent
      * @return array
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function httpPostJson(string $url, array $data = [], array $query = []): array
+    protected function httpPostJson(string $url, array $data = [], array $query = [])
     {
         return $this->request($url, 'POST', ['query' => $query, 'json' => $data]);
     }
@@ -108,31 +107,30 @@ class HttpCent
      * @param string $method
      * @param array $options
      * @param bool $returnRaw
-     * @return array|\EasyWeChat\Kernel\Support\Collection|object|ResponseInterface|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function request(string $url, string $method = 'GET', array $options = [], $returnRaw = false):array
+    public function request(string $url, string $method = 'GET', array $options = [], $returnRaw = false)
     {
         if (empty($this->middlewares)) {
             $this->registerHttpMiddlewares();
         }
-        $response  = $this->baseRequest($url, $method = 'GET', $options);
-
-
+        $response = $this->baseRequest($url, $method, $options);
         return $returnRaw ? $response : $this->castResponseToType($response, $this->app->config->get('response_type'));
     }
 
 
+    /**
+     *注册中间件
+     */
     protected function registerHttpMiddlewares()
     {
         $this->pushMiddleware($this->logMiddleware(), 'log');
     }
 
-    protected function logMiddleware(){
-        $formatter = new \GuzzleHttp\MessageFormatter($this->app['config']['http.log_template'] ?? \GuzzleHttp\MessageFormatter::CLF);
-        return Middleware::log($this->app['logger'], $formatter, LogLevel::DEBUG);
+    protected function logMiddleware()
+    {
+        $formatter = new \GuzzleHttp\MessageFormatter($this->app['config']['log']['template'] ?? \GuzzleHttp\MessageFormatter::CLF);
+        return Middleware::log($this->app['logger'], $formatter, LogLevel::NOTICE);
     }
-
-
 
 }

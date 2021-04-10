@@ -53,10 +53,9 @@ class ServiceContainer extends Container
                 'base_url' => 'https://qyapi.weixin.qq.com'
             ],
 
-            'log.default'=>'default',
-            'log.channels.default'=>[
-                'driver'=>'Single',
-                'path'=>'F:/test/WorkWx/WorkChat/default.log'
+            'log'=>[
+                  'path'=>'D:/development/work-wechat-sdk/dd.log',
+                  'template' => "\"{method}  {target} HTTP/{version}\" [{req_body}]  [{res_body}] {code}  {res_header_Content-Length}"
             ]
 
         ];

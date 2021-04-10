@@ -5,16 +5,18 @@ namespace saber\WorkWechat\Core\Traits;
 
 
 use Psr\Http\Message\ResponseInterface;
+use Psr\Log\InvalidArgumentException;
+use saber\WorkWechat\Core\Collection;
 use saber\WorkWechat\Core\Http\Response;
+use think\contract\Arrayable;
 
 trait  ResponseCastable
 {
     /**
      * @param \Psr\Http\Message\ResponseInterface $response
-     * @param string|null                         $type
-     * @return array|\EasyWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     *
-     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @param string|null $type
+     * @return mixed|array |collection|object|string
+     * @throws \Exception
      */
     protected function castResponseToType(ResponseInterface $response, $type = null)
     {
@@ -32,7 +34,7 @@ trait  ResponseCastable
                 return $response;
             default:
                 if (!is_subclass_of($type, Arrayable::class)) {
-                    throw new InvalidConfigException(sprintf('Config key "response_type" classname must be an instanceof %s', Arrayable::class));
+                    throw new \Exception(sprintf('Config key "response_type" classname must be an instanceof %s', Arrayable::class));
                 }
 
                 return new $type($response);
@@ -43,10 +45,7 @@ trait  ResponseCastable
      * @param mixed       $response
      * @param string|null $type
      *
-     * @return array|\EasyWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
-     *
-     * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
-     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+
      */
     protected function detectAndCastResponseToType($response, $type = null)
     {
