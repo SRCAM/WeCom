@@ -20,14 +20,29 @@ class GroupChatClient extends HttpCent
      * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function list($status_filter=0,$owner_filter=[],$cursor='',$limit = 10)
+    public function list($status_filter = 0, $owner_filter = [], $cursor = '', $limit = 10)
     {
-        $data =[
-            'status_filter'=>$status_filter,
-            'owner_filter'=>$owner_filter,
-            'cursor'=>$cursor,
-            'limit' =>$limit
+        $data = [
+            'status_filter' => $status_filter,
+            'owner_filter' => $owner_filter,
+            'cursor' => $cursor,
+            'limit' => $limit
         ];
-       return $this->httpPost('/cgi-bin/externalcontact/groupchat/list',$data);
+        return $this->httpPost('/cgi-bin/externalcontact/groupchat/list', $data);
     }
+
+    /**
+     * 获取客户群详情
+     * @see  https://open.work.weixin.qq.com/api/doc/90000/90135/92122
+     * @param string $chat_id 客户群ID
+     * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function get($chat_id)
+    {
+        return $this->httpPost('/cgi-bin/externalcontact/groupchat/list', ['chat_id' => $chat_id]);
+    }
+
+
+
 }
