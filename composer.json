@@ -30,7 +30,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "saber\\Test\\":"test/"
+            "saber\\WorkWechat\\Test\\":"test/"
         }
     }
 }

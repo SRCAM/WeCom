@@ -35,6 +35,7 @@ class ServiceContainer extends Container
     public function __construct(array $config = [], array $values = [])
     {
         $this->config = $config;
+
         parent::__construct($values);
         $this->registerProviders($this->getProviders());
 
@@ -44,7 +45,7 @@ class ServiceContainer extends Container
      * 获取配置文件
      * @return array
      */
-    public function getConfig()
+        public function getConfig()
     {
         $base = [
             // http://docs.guzzlephp.org/en/stable/request-options.html
@@ -54,7 +55,7 @@ class ServiceContainer extends Container
             ],
 
             'log'=>[
-                  'path'=>'D:/development/work-wechat-sdk/dd.log',
+                  'path'=>'F:/test/WorkWx/test/dd.log',
                   'template' => "\"{method}  {target} HTTP/{version}\" [{req_body}]  [{res_body}] {code}  {res_header_Content-Length}"
             ]
 
