@@ -7,6 +7,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\ResponseInterface;
+use saber\WorkWechat\Core\Exceptions\AccessTokenNotFindExceptions;
+use saber\WorkWechat\Core\Exceptions\NotInstanceofExceptions;
 use saber\WorkWechat\Core\Interfaces\TokenHandleInterface;
 use saber\WorkWechat\Core\Log\LogManager;
 use saber\WorkWechat\Core\Middlewares\TestMiddleware;
@@ -132,21 +134,17 @@ trait HasHttpRequests
      */
     public function request($url, $method = 'GET', $options = []): ResponseInterface
     {
-        $method = strtoupper($method);
 
-        $options = array_merge(self::$defaults, $options, ['handler' => $this->getHandlerStack()]);
-
-        $token_handle  = $this->app->config['token_handle'];
-
-        if (!class_exists($token_handle) && !$token_handle::getInstance() instanceof TokenHandleInterface){
-            //todo::
-        }
-        var_dump($token_handle::getInstance()->getAccessToken());
-        exit();
         $options = $this->fixJsonIssue($options);
+
         if (property_exists($this, 'baseUri') && !is_null($this->baseUri)) {
             $options['base_uri'] = $this->baseUri;
         }
+
+        $method       = strtoupper($method);
+        $options      = array_merge(self::$defaults, $options, ['handler' => $this->getHandlerStack()]);
+
+
         $response = $this->getHttpClient()->request($method, $url, $options);
         $response->getBody()->rewind();
 

@@ -7,6 +7,9 @@ namespace saber\WorkWechat\Core;
 use GuzzleHttp\Middleware;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LogLevel;
+use saber\WorkWechat\Core\Exceptions\AccessTokenNotFindExceptions;
+use saber\WorkWechat\Core\Exceptions\NotInstanceofExceptions;
+use saber\WorkWechat\Core\Interfaces\TokenHandleInterface;
 use saber\WorkWechat\Core\Traits\HasHttpRequests;
 
 class HttpCent
@@ -98,6 +101,23 @@ class HttpCent
         if (empty($this->middlewares)) {
             $this->registerHttpMiddlewares();
         }
+
+        $token_handle = $this->app->config['token_handle'];
+        if (!class_exists($token_handle)) {
+            throw new NotInstanceofExceptions("$token_handle  not Instanceof \saber\WorkWechat\Core\Interfaces\TokenHandleInterface ");
+        }
+
+        $ref = new \ReflectionClass($token_handle);
+        if (!$ref->implementsInterface(TokenHandleInterface::class)) {
+            throw new NotInstanceofExceptions("$token_handle  not Instanceof \saber\WorkWechat\Core\Interfaces\TokenHandleInterface ");
+        }
+
+        $access_token = $token_handle::getInstance()->getAccessToken();
+        if (empty($access_token)) {
+            throw new AccessTokenNotFindExceptions("AccessToken not find");
+        }
+        $options['query'] = array_merge(['access_token'=>$access_token],$options['query']);
+
         $response = $this->baseRequest($url, $method, $options);
         return $returnRaw ? $response : $this->castResponseToType($response, $this->app->config->get('response_type'));
     }
