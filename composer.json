@@ -9,7 +9,8 @@
         "ext-curl": "*",
         "psr/log": "^1.1",
         "monolog/monolog": "^2.2",
-        "symfony/event-dispatcher": "^5.2"
+        "symfony/event-dispatcher": "^5.2",
+      "ext-http": "*"
     }
     ,
     "require-dev": {

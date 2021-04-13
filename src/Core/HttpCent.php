@@ -5,9 +5,12 @@ namespace saber\WorkWechat\Core;
 
 
 use GuzzleHttp\Middleware;
+use http\Exception\InvalidArgumentException;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LogLevel;
 use saber\WorkWechat\Core\Exceptions\AccessTokenNotFindExceptions;
+use saber\WorkWechat\Core\Exceptions\InvalidAccessTokenExceptions;
 use saber\WorkWechat\Core\Exceptions\NotInstanceofExceptions;
 use saber\WorkWechat\Core\Interfaces\TokenHandleInterface;
 use saber\WorkWechat\Core\Traits\HasHttpRequests;
@@ -95,6 +98,8 @@ class HttpCent
      * @param bool $returnRaw
      * @return array|mixed|object|ResponseInterface|Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws NotInstanceofExceptions
+     * @throws AccessTokenNotFindExceptions
      */
     public function request(string $url, string $method = 'GET', array $options = [], $returnRaw = false)
     {
@@ -104,19 +109,26 @@ class HttpCent
 
         $token_handle = $this->app->config['token_handle'];
         if (!class_exists($token_handle)) {
+            $this->app['logger']->error("$token_handle  not Instanceof \saber\WorkWechat\Core\Interfaces\TokenHandleInterface ");
             throw new NotInstanceofExceptions("$token_handle  not Instanceof \saber\WorkWechat\Core\Interfaces\TokenHandleInterface ");
         }
 
         $ref = new \ReflectionClass($token_handle);
-        if (!$ref->implementsInterface(TokenHandleInterface::class)) {
+        /**
+         * @var $token_handle TokenHandleInterface
+         */
+        $token_handle = $ref->newInstanceWithoutConstructor();
+        if (!$token_handle instanceof TokenHandleInterface) {
+            $this->app['logger']->error("$token_handle  not Instanceof \saber\WorkWechat\Core\Interfaces\TokenHandleInterface ");
             throw new NotInstanceofExceptions("$token_handle  not Instanceof \saber\WorkWechat\Core\Interfaces\TokenHandleInterface ");
         }
 
-        $access_token = $token_handle::getInstance()->getAccessToken();
-        if (empty($access_token)) {
+        if (!$access_token = $token_handle->getAccessToken()) {
+            $this->app['logger']->error("AccessToken not find");
             throw new AccessTokenNotFindExceptions("AccessToken not find");
         }
-        $options['query'] = array_merge(['access_token'=>$access_token],$options['query']);
+
+        $options['query'] = array_merge(['access_token' => $access_token], $options['query']);
 
         $response = $this->baseRequest($url, $method, $options);
         return $returnRaw ? $response : $this->castResponseToType($response, $this->app->config->get('response_type'));
@@ -127,7 +139,9 @@ class HttpCent
      *注册中间件
      */
     protected function registerHttpMiddlewares()
-    {
+    {   // retry
+        $this->pushMiddleware($this->retryMiddleware(), 'retry');
+        //log
         $this->pushMiddleware($this->logMiddleware(), 'log');
     }
 
@@ -138,6 +152,37 @@ class HttpCent
     {
         $formatter = new \GuzzleHttp\MessageFormatter($this->app['config']['log']['template'] ?? \GuzzleHttp\MessageFormatter::CLF);
         return Middleware::log($this->app['logger'], $formatter, LogLevel::NOTICE);
+    }
+
+
+
+    protected function retryMiddleware()
+    {
+        return Middleware::retry(
+            function (
+                $retries,
+                RequestInterface $request,
+                ResponseInterface $response = null
+            ) {
+                // Limit the number of retries to 2
+                if ($response && $body = $response->getBody()) {
+                    // Retry on server errors
+                    $response = json_decode($body, true);
+                    if (!empty($response['errcode']) && in_array(abs($response['errcode']), [40001, 40014, 42001], true)) {
+                        $this->app['logger']->debug('Retrying with refreshed access token.');
+                        throw new InvalidAccessTokenExceptions($response['errmsg']);
+
+                    }
+
+                    return  false;
+                }
+
+                return false;
+            },
+            function () {
+                return abs($this->app->config->get('http.retry_delay', 500));
+            }
+        );
     }
 
 }

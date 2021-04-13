@@ -4,7 +4,7 @@
 namespace saber\WorkWechat\Core\Exceptions;
 
 
-class AccessTokenNotFindExceptions extends \Exception
+class AccessTokenNotFindExceptions extends WorkWxException
 {
 
 }
