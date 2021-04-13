@@ -169,7 +169,7 @@ class HttpCent
                     // Retry on server errors
                     $response = json_decode($body, true);
                     if (!empty($response['errcode']) && in_array(abs($response['errcode']), [40001, 40014, 42001], true)) {
-                        $this->app['logger']->debug('Retrying with refreshed access token.');
+                        $this->app['logger']->debug($response['errmsg']);
                         throw new InvalidAccessTokenExceptions($response['errmsg']);
 
                     }
