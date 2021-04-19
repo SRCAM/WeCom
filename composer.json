@@ -9,12 +9,12 @@
         "ext-curl": "*",
         "psr/log": "^1.1",
         "monolog/monolog": "^2.2",
-        "symfony/event-dispatcher": "^5.2",
-      "ext-http": "*"
+        "symfony/event-dispatcher": "^5.2"
     }
     ,
     "require-dev": {
-        "roave/security-advisories": "dev-latest"
+        "roave/security-advisories": "dev-latest",
+        "phpunit/phpunit": "7.5.20"
     },
     "description": "企业微信",
     "license": "MIT",
@@ -31,7 +31,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "saber\\WorkWechat\\Test\\":"test/"
+            "saber\\WorkWechat\\Tests\\":"tests/"
         }
     }
 }
