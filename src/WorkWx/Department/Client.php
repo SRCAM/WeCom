@@ -56,7 +56,7 @@ class Client extends HttpCent
      */
     public function list($id=0)
     {
-        return $this->httpGet('/cgi-bin/department/delete', compact('id'));
+        return $this->httpGet('/cgi-bin/department/list', compact('id'));
     }
 
 
