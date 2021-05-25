@@ -1,5 +1,5 @@
 {
-    "name": "saber/work-wechat",
+    "name": "saber/workCom",
     "require": {
         "guzzlehttp/guzzle": "^6.5.5",
         "php": ">=7.2",
@@ -13,8 +13,7 @@
     }
     ,
     "require-dev": {
-        "roave/security-advisories": "dev-latest",
-        "phpunit/phpunit": "7.5.20"
+        "roave/security-advisories": "dev-latest"
     },
     "description": "企业微信",
     "license": "MIT",

@@ -5,7 +5,6 @@ namespace saber\WorkWechat\Core;
 
 
 use GuzzleHttp\Middleware;
-use http\Exception\InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LogLevel;
@@ -109,7 +108,7 @@ class HttpCent
 
         $token_handle = $this->app->config['token_handle'];
         if (!class_exists($token_handle)) {
-            $this->app['logger']->error("$token_handle  not Instanceof \saber\WorkWechat\Core\Interfaces\TokenHandleInterface ");
+            $this->app['logger']->error("$token_handle  not Instanceof TokenHandleInterface ");
             throw new NotInstanceofExceptions("$token_handle  not Instanceof \saber\WorkWechat\Core\Interfaces\TokenHandleInterface ");
         }
 
@@ -119,8 +118,8 @@ class HttpCent
          */
         $token_handle = $ref->newInstanceWithoutConstructor();
         if (!$token_handle instanceof TokenHandleInterface) {
-            $this->app['logger']->error("$token_handle  not Instanceof \saber\WorkWechat\Core\Interfaces\TokenHandleInterface ");
-            throw new NotInstanceofExceptions("$token_handle  not Instanceof \saber\WorkWechat\Core\Interfaces\TokenHandleInterface ");
+            $this->app['logger']->error("$token_handle  not Instanceof  TokenHandleInterface ");
+            throw new NotInstanceofExceptions("$token_handle  not Instanceof TokenHandleInterface ");
         }
 
         if (!$access_token = $token_handle->getAccessToken()) {
