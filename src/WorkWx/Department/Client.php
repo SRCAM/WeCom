@@ -45,18 +45,20 @@ class Client extends HttpCent
      */
     public function delete($id)
     {
+        //
         return $this->httpGet('/cgi-bin/department/delete', compact('id'));
     }
 
     /**
      * 获取部门列表
      * @param int $id 获取部门列表
+     * @param int $fetch_child 是否递归查询
      * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function list($id=0)
+    public function list($id=0,$fetch_child= 0)
     {
-        return $this->httpGet('/cgi-bin/department/list', compact('id'));
+        return $this->httpGet('/cgi-bin/department/list',['id'=>$id,'fetch_child'=>$fetch_child]);
     }
 
 
