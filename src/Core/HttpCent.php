@@ -114,15 +114,15 @@ class HttpCent
 
         $ref = new \ReflectionClass($token_handle);
         /**
-         * @var $token_handle TokenHandleInterface
+         * @var $handle TokenHandleInterface
          */
-        $token_handle = $ref->newInstanceWithoutConstructor();
-        if (!$token_handle instanceof TokenHandleInterface) {
+        $handle = $ref->newInstanceWithoutConstructor();
+        if (!$handle instanceof TokenHandleInterface) {
             $this->app['logger']->error("$token_handle  not Instanceof  TokenHandleInterface ");
             throw new NotInstanceofExceptions("$token_handle  not Instanceof TokenHandleInterface ");
         }
 
-        if (!$access_token = $token_handle->getAccessToken()) {
+        if (!$access_token = $token_handle::getInstance()->getAccessToken()) {
             $this->app['logger']->error("AccessToken not find");
             throw new AccessTokenNotFindExceptions("AccessToken not find");
         }
