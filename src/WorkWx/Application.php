@@ -36,6 +36,7 @@ class Application extends ServiceContainer
         \saber\WorkWechat\WorkWx\Department\ServiceProvider::class,
         \saber\WorkWechat\WorkWx\LinkedCorp\ServiceProvider::class,
         \saber\WorkWechat\WorkWx\Customer\ServiceProvider::class,
-        \saber\WorkWechat\WorkWx\Session\ServiceProvider::class
+        \saber\WorkWechat\WorkWx\Session\ServiceProvider::class,
+        \saber\WorkWechat\WorkWx\Agent\ServiceProvider::class,
     ];
 }

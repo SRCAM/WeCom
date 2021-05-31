@@ -6,7 +6,7 @@ namespace saber\WorkWechat\WorkWx\Agent;
 
 use saber\WorkWechat\Core\HttpCent;
 
-class AgentClient extends HttpCent
+class Client extends HttpCent
 {
     /**获取应用
      * @param int $agentId
