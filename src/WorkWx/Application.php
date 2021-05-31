@@ -24,7 +24,7 @@ use \saber\WorkWechat\WorkWx\LinkedCorp\Client as LinkedCorpClient;
  * @property GroupChatClient           $group_chat 企业互联
  * @property CustomerClient            $customer 客户
  * @property ContactWayClient          $contact_way 客户
- * @property SessionClient              $session 客户
+ * @property SessionClient             $Session 客户
  * Class Application
  * @package saber\WorkWechat\WorkWx
  */
