@@ -12,7 +12,8 @@ use saber\WorkWechat\WorkWx\User\BatchClient;
 use saber\WorkWechat\WorkWx\User\CorpClient;
 use saber\WorkWechat\WorkWx\User\TagClient;
 use saber\WorkWechat\WorkWx\User\UserClient;
-use \saber\WorkWechat\WorkWx\LinkedCorp\Client as LinkedCorpClient;
+use saber\WorkWechat\WorkWx\LinkedCorp\Client as LinkedCorpClient;
+use saber\WorkWechat\WorkWx\Agent\Client  as AgentClient;
 /**
  * @property UserClient                $user      用户
  * @property BatchClient               $batch     批量处理
@@ -25,6 +26,7 @@ use \saber\WorkWechat\WorkWx\LinkedCorp\Client as LinkedCorpClient;
  * @property CustomerClient            $customer 客户
  * @property ContactWayClient          $contact_way 客户
  * @property SessionClient             $session 客户
+ * @property AgentClient               $agent 客户
  * Class Application
  * @package saber\WorkWechat\WorkWx
  */

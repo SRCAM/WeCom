@@ -28,4 +28,5 @@ class MessageClient extends HttpCent
         return $this->httpPost( '/cgi-bin/message/update_taskcard', $param);
     }
 
+
 }
