@@ -4,7 +4,7 @@ namespace saber\WorkWechat\WorkWx\Session;
 
 use saber\WorkWechat\Core\HttpCent;
 
-class SessionCent extends HttpCent
+class Client extends HttpCent
 {
     /**
      * 获取会话内容存档开启成员列表
@@ -33,9 +33,12 @@ class SessionCent extends HttpCent
     /**
      * 获取会话内容存档内部群信息
      * 企业可通过此接口，获取会话内容存档本企业的内部群信息，包括群名称、群主id、公告、群创建时间以及所有群成员的id与加入时间。
+     * @param $room_id
+     * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getGroupChat($roomid)
+    public function getGroupChat($room_id)
     {
-        return $this->httpPost('/cgi-bin/msgaudit/check_single_agree',['roomid'=>$roomid]);
+        return $this->httpPost('/cgi-bin/msgaudit/check_single_agree',['roomid'=>$room_id]);
     }
 }
