@@ -14,7 +14,7 @@ class Client extends HttpCent
      */
     public function getPermitUserList($type = null)
     {
-        return $this->httpPost('/cgi-bin/msgaudit/get_permit_user_lis', ['type' => $type]);
+        return $this->httpPost('/cgi-bin/msgaudit/get_permit_user_list', ['type' => $type]);
 
     }
 
@@ -23,7 +23,6 @@ class Client extends HttpCent
      * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-
     public function getCheckSingleAgree()
     {
         return $this->httpPost('/cgi-bin/msgaudit/check_single_agree');
