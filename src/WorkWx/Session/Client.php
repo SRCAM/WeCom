@@ -4,6 +4,12 @@ namespace saber\WorkWechat\WorkWx\Session;
 
 use saber\WorkWechat\Core\HttpCent;
 
+
+/**
+ * Class Client
+ * @package saber\WorkWechat\WorkWx\Session
+ *
+ */
 class Client extends HttpCent
 {
     /**
