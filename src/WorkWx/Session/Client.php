@@ -21,7 +21,6 @@ class Client extends HttpCent
     public function getPermitUserList($type = null)
     {
         return $this->httpPost('/cgi-bin/msgaudit/get_permit_user_list', ['type' => $type]);
-
     }
 
     /**

@@ -14,6 +14,8 @@ use saber\WorkWechat\WorkWx\User\TagClient;
 use saber\WorkWechat\WorkWx\User\UserClient;
 use saber\WorkWechat\WorkWx\LinkedCorp\Client as LinkedCorpClient;
 use saber\WorkWechat\WorkWx\Agent\Client  as AgentClient;
+use saber\WorkWechat\WorkWx\JsApi\Client  as JsApiClient;
+use saber\WorkWechat\WorkWx\Message\Client  as MessageClient;
 /**
  * @property UserClient                $user      用户
  * @property BatchClient               $batch     批量处理
@@ -24,14 +26,18 @@ use saber\WorkWechat\WorkWx\Agent\Client  as AgentClient;
  * @property CustomerMessageClient     $customer_message 企业互联
  * @property GroupChatClient           $group_chat 企业互联
  * @property CustomerClient            $customer 客户
- * @property ContactWayClient          $contact_way 客户
- * @property SessionClient             $session 客户
- * @property AgentClient               $agent 客户
+ * @property ContactWayClient          $contact_way 联系方式
+ * @property SessionClient             $session 会话存档
+ * @property AgentClient               $agent 应用
+ * @property JsApiClient               $js_api jsapi
+ * @property MessageClient             $message 应用消息
+ *
  * Class Application
  * @package saber\WorkWechat\WorkWx
  */
 class Application extends ServiceContainer
 {
+
 
     protected $providers=[
         \saber\WorkWechat\WorkWx\User\ServiceProvider::class,
@@ -40,5 +46,7 @@ class Application extends ServiceContainer
         \saber\WorkWechat\WorkWx\Customer\ServiceProvider::class,
         \saber\WorkWechat\WorkWx\Session\ServiceProvider::class,
         \saber\WorkWechat\WorkWx\Agent\ServiceProvider::class,
+        \saber\WorkWechat\WorkWx\JsApi\ServiceProvider::class,
+        \saber\WorkWechat\WorkWx\Message\ServiceProvider::class,
     ];
 }

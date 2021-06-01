@@ -1,7 +1,7 @@
 <?php
 
 
-namespace saber\WorkWechat\WorkWx\JsApi;
+namespace saber\WorkWechat\WorkWx\Message;
 
 
 use Pimple\Container;
@@ -18,7 +18,7 @@ class ServiceProvider implements ServiceProviderInterface
 
     public function register(Container $pimple)
     {
-        $pimple['js_api'] = function ($app) {
+        $pimple['message'] = function ($app) {
             return new Client($app);
         };
     }

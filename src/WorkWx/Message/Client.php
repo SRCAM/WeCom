@@ -6,7 +6,7 @@ namespace saber\WorkWechat\WorkWx\Message;
 
 use saber\WorkWechat\Core\HttpCent;
 
-class MessageClient extends HttpCent
+class Client extends HttpCent
 {
     /**发送应用消息
      * @param array $param
