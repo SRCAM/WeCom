@@ -1,11 +1,12 @@
 <?php
 
-namespace saber\WorkWechat\WorkWx\Js;
+namespace saber\WorkWechat\WorkWx\JsApi;
 
 use saber\WorkWechat\Core\HttpCent;
 
 class Client extends HttpCent
 {
+
     /**
      * 获取企业的ticket
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -14,6 +15,7 @@ class Client extends HttpCent
     {
         return $this->httpGet('/cgi-bin/get_jsapi_ticket');
     }
+
 
     /**
      *获取应用的Ticket
