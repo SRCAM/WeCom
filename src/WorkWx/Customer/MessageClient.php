@@ -78,6 +78,6 @@ class MessageClient extends HttpCent
      */
     public function sendWelcomeMsg($welcome_code, $text = '', $param = [])
     {
-        $this->httpPost('/cgi-bin/externalcontact/send_welcome_msg', array_merge(['welcome_code' => $welcome_code, 'text' => $text], $param));
+       return $this->httpPost('/cgi-bin/externalcontact/send_welcome_msg', array_merge(['welcome_code' => $welcome_code, 'text' => $text], $param));
     }
 }
