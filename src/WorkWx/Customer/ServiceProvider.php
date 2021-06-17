@@ -30,5 +30,9 @@ class ServiceProvider implements ServiceProviderInterface
         $pimple['contact_way'] = function ($app) {
             return new CustomerClient($app);
         };
+
+        $pimple['transfer'] = function ($app){
+            return new CustomerClient($app);
+        };
     }
 }
