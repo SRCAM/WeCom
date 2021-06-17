@@ -32,7 +32,7 @@ class ServiceProvider implements ServiceProviderInterface
         };
 
         $pimple['transfer'] = function ($app){
-            return new CustomerClient($app);
+            return new TransferClient($app);
         };
     }
 }
