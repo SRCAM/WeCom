@@ -74,9 +74,11 @@ class MessageClient extends HttpCent
      * @param string $welcome_code 通过添加外部联系人事件推送给企业的发送欢迎语的凭证，有效期为20秒
      * @param string $text 文字消息
      * @param array $param 其他参数
+     * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
+     * @return array|mixed|object|\Psr\Http\Message\ResponseInterface|\saber\WorkWechat\Core\Collection|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function sendWelcomeMsg($welcome_code, $text = '', $param = [])
+    public function sendWelcomeMsg(string $welcome_code, string $text = '', array $param = [])
     {
        return $this->httpPost('/cgi-bin/externalcontact/send_welcome_msg', array_merge(['welcome_code' => $welcome_code, 'text' => $text], $param));
     }
