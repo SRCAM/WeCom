@@ -100,7 +100,7 @@ class HttpCent
      * @throws NotInstanceofExceptions
      * @throws AccessTokenNotFindExceptions
      */
-    public function request(string $url, string $method = 'GET', array $options = [], $returnRaw = false)
+    protected function request(string $url, string $method = 'GET', array $options = [], $returnRaw = false)
     {
         if (empty($this->middlewares)) {
             $this->registerHttpMiddlewares();
