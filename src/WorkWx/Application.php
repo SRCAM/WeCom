@@ -6,6 +6,7 @@ use saber\WorkWechat\WorkWx\Customer\ContactWayClient;
 use saber\WorkWechat\WorkWx\Customer\CustomerClient;
 use saber\WorkWechat\WorkWx\Customer\GroupChatClient;
 use saber\WorkWechat\WorkWx\Customer\MessageClient as CustomerMessageClient;
+use saber\WorkWechat\WorkWx\Customer\TransferClient;
 use saber\WorkWechat\WorkWx\Department\Client as DepartmentClient;
 use saber\WorkWechat\WorkWx\Session\Client as SessionClient;
 use saber\WorkWechat\WorkWx\User\BatchClient;
@@ -31,6 +32,7 @@ use saber\WorkWechat\WorkWx\Message\Client  as MessageClient;
  * @property AgentClient               $agent 应用
  * @property JsApiClient               $js_api jsapi
  * @property MessageClient             $message 应用消息
+ * @property TransferClient            $transfer 离职&转移
  *
  * Class Application
  * @package saber\WorkWechat\WorkWx
