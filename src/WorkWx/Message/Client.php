@@ -15,7 +15,7 @@ class Client extends HttpCent
      * @see https://work.weixin.qq.com/api/doc/90001/90143/90372
      */
     public function send( $param ){
-        return $this->httpPost('/cgi-bin/message/send', $param);
+        return $this->httpPostJson('/cgi-bin/message/send', $param);
     }
 
     /**更新任务卡片消息
@@ -25,7 +25,7 @@ class Client extends HttpCent
      * @see https://work.weixin.qq.com/api/doc/90001/90143/91585
      */
     public function updateTaskCard( $param ){
-        return $this->httpPost( '/cgi-bin/message/update_taskcard', $param);
+        return $this->httpPostJson( '/cgi-bin/message/update_taskcard', $param);
     }
 
 
