@@ -79,7 +79,7 @@ trait HasHttpRequests
      *
      * @return ClientInterface
      */
-    public function getHttpClient(): ClientInterface
+    protected function getHttpClient(): ClientInterface
     {
         if (!($this->httpClient instanceof ClientInterface)) {
             if (property_exists($this, 'app') && $this->app['http_client']) {
@@ -193,7 +193,7 @@ trait HasHttpRequests
      *
      * @return \GuzzleHttp\HandlerStack
      */
-    public function getHandlerStack(): HandlerStack
+    protected function getHandlerStack(): HandlerStack
     {
         if ($this->handlerStack) {
             return $this->handlerStack;
