@@ -29,7 +29,7 @@ class BehaviorClient extends HttpCent
             'end_time'  =>$end_time
         ];
 
-        $this->httpPostJson('/cgi-bin/externalcontact/get_user_behavior_data',$data);
+        return $this->httpPostJson('/cgi-bin/externalcontact/get_user_behavior_data',$data);
     }
 
 

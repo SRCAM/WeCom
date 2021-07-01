@@ -16,7 +16,6 @@ class TokenTest implements TokenHandleInterface
 
     public function getAccessToken(): string
     {
-        Factory::WorkWx()->behavior->setHttpClient()
         // TODO: Implement getAccessToken() method.
     }
 }
