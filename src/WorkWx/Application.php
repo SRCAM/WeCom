@@ -2,6 +2,7 @@
 namespace saber\WorkWechat\WorkWx;
 
 use saber\WorkWechat\Core\ServiceContainer;
+use saber\WorkWechat\WorkWx\Customer\BehaviorClient;
 use saber\WorkWechat\WorkWx\Customer\ContactWayClient;
 use saber\WorkWechat\WorkWx\Customer\CustomerClient;
 use saber\WorkWechat\WorkWx\Customer\GroupChatClient;
@@ -27,6 +28,7 @@ use saber\WorkWechat\WorkWx\Message\Client  as MessageClient;
  * @property CustomerMessageClient     $customer_message 企业互联
  * @property GroupChatClient           $group_chat 企业互联
  * @property CustomerClient            $customer 客户
+ * @property BehaviorClient            $behavior 客户
  * @property ContactWayClient          $contact_way 联系方式
  * @property SessionClient             $session 会话存档
  * @property AgentClient               $agent 应用

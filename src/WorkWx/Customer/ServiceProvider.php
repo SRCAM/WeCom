@@ -34,5 +34,9 @@ class ServiceProvider implements ServiceProviderInterface
         $pimple['transfer'] = function ($app){
             return new TransferClient($app);
         };
+
+        $pimple['behavior'] = function ($app){
+            return new BehaviorClient($app);
+        };
     }
 }
