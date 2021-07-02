@@ -38,7 +38,7 @@ class ContactWayClient extends HttpCent
             'type' => $type,
             'scene' => $scene,
         ];
-        return $this->httpPost('/cgi-bin/externalcontact/add_contact_way', array_merge($data, $param));
+        return $this->httpPostJson('/cgi-bin/externalcontact/add_contact_way', array_merge($data, $param));
     }
 
 
@@ -51,7 +51,7 @@ class ContactWayClient extends HttpCent
      */
     public function getContactWay($configId)
     {
-        return $this->httpPost('/cgi-bin/externalcontact/get_contact_way', ['config_id' => $configId]);
+        return $this->httpPostJson('/cgi-bin/externalcontact/get_contact_way', ['config_id' => $configId]);
     }
 
 
@@ -66,7 +66,7 @@ class ContactWayClient extends HttpCent
     public function updateContactWay($configId, $param = [])
     {
         $data = ['config_id' => $configId];
-        return $this->httpPost('/cgi-bin/externalcontact/get_contact_way', array_merge($data, $param));
+        return $this->httpPostJson('/cgi-bin/externalcontact/get_contact_way', array_merge($data, $param));
     }
 
     /**
@@ -78,6 +78,6 @@ class ContactWayClient extends HttpCent
      */
     public function delContactWay($configId)
     {
-        return $this->httpPost('/cgi-bin/externalcontact/del_contact_way', ['config_id' => $configId]);
+        return $this->httpPostJson('/cgi-bin/externalcontact/del_contact_way', ['config_id' => $configId]);
     }
 }

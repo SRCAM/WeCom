@@ -17,7 +17,7 @@ class TagClient extends BatchClient
      */
     public function getCorpTagList($tagId, $groupId)
     {
-        $this->httpPost('/cgi-bin/externalcontact/get_corp_tag_list', ['tag_id' => $tagId, 'group_id' => $groupId]);
+        $this->httpPostJson('/cgi-bin/externalcontact/get_corp_tag_list', ['tag_id' => $tagId, 'group_id' => $groupId]);
     }
 
     /**
@@ -33,7 +33,7 @@ class TagClient extends BatchClient
         $data = [
             'tag' => $tag,
         ];
-        return $this->httpPost('/cgi-bin/externalcontact/add_corp_tag', array_merge($data, $param));
+        return $this->httpPostJson('/cgi-bin/externalcontact/add_corp_tag', array_merge($data, $param));
     }
 
     /**
@@ -46,7 +46,7 @@ class TagClient extends BatchClient
      */
     public function editCorpTag($tagId, $param = [])
     {
-        return $this->httpPost('/cgi-bin/externalcontact/edit_corp_tag', array_merge(['id' => $tagId], $param));
+        return $this->httpPostJson('/cgi-bin/externalcontact/edit_corp_tag', array_merge(['id' => $tagId], $param));
     }
 
     /**
@@ -59,7 +59,7 @@ class TagClient extends BatchClient
      */
     public function delCorpTag($tagId, $param = [])
     {
-        return $this->httpPost('/cgi-bin/externalcontact/del_corp_tag', array_merge(['id' => $tagId], $param));
+        return $this->httpPostJson('/cgi-bin/externalcontact/del_corp_tag', array_merge(['id' => $tagId], $param));
     }
 
 
@@ -74,6 +74,6 @@ class TagClient extends BatchClient
      */
     public function markTag($userid,$externalUserid,$param=[])
     {
-        return $this->httpPost('/cgi-bin/externalcontact/mark_tag', array_merge(['userid' => $userid,'external_userid'=>$externalUserid], $param));
+        return $this->httpPostJson('/cgi-bin/externalcontact/mark_tag', array_merge(['userid' => $userid,'external_userid'=>$externalUserid], $param));
     }
 }

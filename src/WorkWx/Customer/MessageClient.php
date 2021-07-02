@@ -24,7 +24,7 @@ class MessageClient extends HttpCent
             'external_userid' => $external_userid,
             'sender' => $sender,
         ];
-        return $this->httpPost('/cgi-bin/externalcontact/add_msg_template', array_merge($data, $param));
+        return $this->httpPostJson('/cgi-bin/externalcontact/add_msg_template', array_merge($data, $param));
     }
 
     /**
@@ -46,7 +46,7 @@ class MessageClient extends HttpCent
             'end_time' => $end_time,
             'cursor' => $cursor
         ];
-        return $this->httpPost('/cgi-bin/externalcontact/get_groupmsg_list_v2', array_merge($data, $param));
+        return $this->httpPostJson('/cgi-bin/externalcontact/get_groupmsg_list_v2', array_merge($data, $param));
     }
 
     /**
@@ -66,7 +66,7 @@ class MessageClient extends HttpCent
             'cursor' => $cursor
         ];
 
-        return $this->httpPost('/cgi-bin/externalcontact/get_groupmsg_task', $data);
+        return $this->httpPostJson('/cgi-bin/externalcontact/get_groupmsg_task', $data);
     }
 
     /**
@@ -80,6 +80,6 @@ class MessageClient extends HttpCent
      */
     public function sendWelcomeMsg(string $welcome_code, string $text = '', array $param = [])
     {
-       return $this->httpPost('/cgi-bin/externalcontact/send_welcome_msg', array_merge(['welcome_code' => $welcome_code, 'text' => $text], $param));
+       return $this->httpPostJson('/cgi-bin/externalcontact/send_welcome_msg', array_merge(['welcome_code' => $welcome_code, 'text' => $text], $param));
     }
 }

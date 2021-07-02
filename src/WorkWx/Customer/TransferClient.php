@@ -29,9 +29,9 @@ class TransferClient extends HttpCent
             'handover_userid' => $handoverUserid,
             'takeover_userid' => $takeoverUserid,
             'external_userid' => $externalUserid,
-            'transfer_success_msg' => $transferSuccessMsg
+            'transfer_success_msg' => $transferSuccessMsg,
         ];
-        return $this->httpPost('/cgi-bin/externalcontact/transfer_customer', $data);
+        return $this->httpPostJson('/cgi-bin/externalcontact/transfer_customer', $data);
     }
 
 
@@ -51,7 +51,7 @@ class TransferClient extends HttpCent
             'takeover_userid' => $takeoverUserid,
             'cursor' => $cursor
         ];
-        return $this->httpPost('/cgi-bin/externalcontact/transfer_result', $data);
+        return $this->httpPostJson('/cgi-bin/externalcontact/transfer_result', $data);
     }
 
     /**
@@ -70,7 +70,7 @@ class TransferClient extends HttpCent
             'page_size' => $pageSize,
             'cursor' => $cursor
         ];
-        return $this->httpPost('/cgi-bin/externalcontact/get_unassigned_list', $data);
+        return $this->httpPostJson('/cgi-bin/externalcontact/get_unassigned_list', $data);
     }
 
 
@@ -89,7 +89,7 @@ class TransferClient extends HttpCent
             'takeover_userid' => $takeoverUserid,
             'external_userid' => $externalUserid,
         ];
-        return $this->httpPost('/cgi-bin/externalcontact/resigned/transfer_customer', $data);
+        return $this->httpPostJson('/cgi-bin/externalcontact/resigned/transfer_customer', $data);
     }
 
     /**
@@ -108,7 +108,7 @@ class TransferClient extends HttpCent
             'takeover_userid' => $takeoverUserid,
             'cursor' => $cursor
         ];
-        return $this->httpPost('/cgi-bin/externalcontact/resigned/transfer_result', $data);
+        return $this->httpPostJson('/cgi-bin/externalcontact/resigned/transfer_result', $data);
     }
 
     /**
@@ -121,6 +121,6 @@ class TransferClient extends HttpCent
      */
     public function groupChatTransfer($chatIdList,$newOwner)
     {
-        return $this->httpPost('/cgi-bin/externalcontact/resigned/transfer_result', ['chat_id_list'=>$chatIdList,'new_owner'=>$newOwner]);
+        return $this->httpPostJson('/cgi-bin/externalcontact/resigned/transfer_result', ['chat_id_list'=>$chatIdList,'new_owner'=>$newOwner]);
     }
 }

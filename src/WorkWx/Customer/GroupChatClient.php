@@ -28,7 +28,7 @@ class GroupChatClient extends HttpCent
             'cursor' => $cursor,
             'limit' => $limit
         ];
-        return $this->httpPost('/cgi-bin/externalcontact/groupchat/list', $data);
+        return $this->httpPostJson('/cgi-bin/externalcontact/groupchat/list', $data);
     }
 
     /**
@@ -40,7 +40,7 @@ class GroupChatClient extends HttpCent
      */
     public function get($chat_id)
     {
-        return $this->httpPost('/cgi-bin/externalcontact/groupchat/list', ['chat_id' => $chat_id]);
+        return $this->httpPostJson('/cgi-bin/externalcontact/groupchat/list', ['chat_id' => $chat_id]);
     }
 
 
